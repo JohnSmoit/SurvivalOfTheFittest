@@ -19,10 +19,13 @@ function setup() {
 }
 
 function draw() {
+  print(preys.length);
   background(100, 0, 0);
   for (let i = 0; i < preys.length; i++) {
     preys[i].display();
     preys[i].manualMove(up, down, turnLeft, turnRight);
+    //preys[i].getSensorDistances(predators);
+    preys[i].showSensors();
   }
   for (let i = 0; i < predators.length; i++) {
     predators[i].update(preys);
@@ -32,6 +35,7 @@ function draw() {
         preys[j].damage(predators[i].damage);
       }
       if (!(preys[j].isAlive)) {
+        print( "prey " + j + " is dead");
         preys.splice(j, 1);
       }
     }
